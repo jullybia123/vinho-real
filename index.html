@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vinícola Vinho Real</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Playfair+Display&display=swap');
+
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Merriweather', serif;
+    background-color: #f5e9dc; /* bege */
+    color: #5a1d1d; /* vinho escuro */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    color: #7b2a2a;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #4a1313;
+  }
+
+  header {
+    background-color: #7b2a2a;
+    padding: 1.8rem 2rem;
+    color: #f5e9dc;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(123, 42, 42, 0.6);
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+  }
+
+  main {
+    flex-grow: 1;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Landing */
+  #welcome {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  #welcome h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: #7b2a2a;
+  }
+  #welcome p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: #4a1313;
+  }
+  #welcome button {
+    background-color: #7b2a2a;
+    color: #f5e9dc;
+    border: none;
+    padding: 1.1rem 2.8rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 3px 6px rgba(123, 42, 42, 0.5);
+  }
+  #welcome button:hover {
+    background-color: #4a1313;
+  }
+
+  /* Vinhos Tabs */
+  #vinhos {
+    margin-bottom: 4rem;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    background-color: #f5e9dc;
+    border: 2px solid #7b2a2a;
+    color: #7b2a2a;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 0.65rem 2.2rem;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
+  }
+  .tab-btn:hover:not(.active) {
+    background-color: #7b2a2a;
+    color: #f5e9dc;
+  }
+  .tab-btn.active {
+    background-color: #7b2a2a;
+    color: #f5e9dc;
+    cursor: default;
+  }
+
+  .tab-content {
+    font-size: 1.15rem;
+    line-height: 1.55;
+  }
+
+  .vinho-item {
+    margin-bottom: 2rem;
+  }
+  .vinho-item h3 {
+    font-family: 'Playfair Display', serif;
+    color: #7b2a2a;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
+  }
+  .vinho-item p {
+    color: #4a1313;
+    font-weight: 400;
+  }
+
+  /* Botão Loja */
+  #loja-btn {
+    display: block;
+    max-width: 220px;
+    margin: 2.5rem auto 4rem;
+    background-color: #7b2a2a;
+    color: #f5e9dc;
+    padding: 1.1rem 2.5rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    box-shadow: 0 3px 7px rgba(123, 42, 42, 0.5);
+    transition: background-color 0.3s ease;
+  }
+  #loja-btn:hover {
+    background-color: #4a1313;
+  }
+
+  /* Sobre Nós */
+  #sobre {
+    margin-bottom: 4rem;
+  }
+  #sobre h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 3px solid #7b2a2a;
+    padding-bottom: 0.5rem;
+    color: #7b2a2a;
+  }
+  #sobre p {
+    margin-bottom: 1.3rem;
+    font-weight: 400;
+    color: #4a1313;
+  }
+  #sobre strong {
+    color: #7b2a2a;
+  }
+
+  /* Contato */
+  #contato {
+    margin-bottom: 3rem;
+  }
+  #contato h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 3px solid #7b2a2a;
+    padding-bottom: 0.5rem;
+    color: #7b2a2a;
+  }
+  #contato p, #contato a {
+    font-size: 1.1rem;
+    margin-bottom: 0.85rem;
+    color: #4a1313;
+    font-weight: 400;
+  }
+  #contato a:hover {
+    color: #7b2a2a;
+  }
+
+  footer {
+    background-color: #7b2a2a;
+    color: #f5e9dc;
+    text-align: center;
+    padding: 1.2rem 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+    user-select: none;
+  }
+
+  /* Responsividade */
+  @media(max-width: 600px) {
+    header h1 {
+      font-size: 2rem;
+    }
+    main {
+      margin: 2rem 1rem;
+    }
+    #welcome h2 {
+      font-size: 2rem;
+    }
+    .tabs {
+      gap: 0.7rem;
+    }
+    .tab-btn {
+      flex-grow: 1;
+      text-align: center;
+      padding: 0.6rem 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Vinícola Vinho Real</h1>
+</header>
+
+<main>
+
+  <section id="welcome">
+    <h2>Bem-vindo ao Vinho Real</h2>
+    <p>Tradição e excelência na arte da vinicultura de Andradas, Minas Gerais. Descubra nossos vinhos elaborados com paixão e qualidade ímpar.</p>
+    <button id="verVinhosBtn" aria-label="Ver nossos vinhos">Ver nossos vinhos</button>
+  </section>
+
+  <section id="vinhos" style="display:none;" aria-label="Seção de vinhos">
+    <h2>Nossos Vinhos</h2>
+
+    <div class="tabs" role="tablist" aria-label="Categorias de vinhos">
+      <button class="tab-btn active" data-tab="tintos" role="tab" aria-selected="true" aria-controls="tintos" id="tab-tintos">Tintos</button>
+      <button class="tab-btn" data-tab="brancos" role="tab" aria-selected="false" aria-controls="brancos" id="tab-brancos">Brancos</button>
+      <button class="tab-btn" data-tab="roses" role="tab" aria-selected="false" aria-controls="roses" id="tab-roses">Rosés</button>
+    </div>
+
+    <div id="tintos" class="tab-content" role="tabpanel" aria-labelledby="tab-tintos">
+      <div class="vinho-item">
+        <h3>Vinho Tinto Dark Red — Tinto Seco</h3>
+        <p>Profundo e misterioso, com sabor marcante e final prolongado.</p>
+      </div>
+      <div class="vinho-item">
+        <h3>Vinho Tinto Portinari — Tinto Fino Elegante</h3>
+        <p>Um vinho artístico e sofisticado, de taninos suaves e complexidade aromática.</p>
+      </div>
+    </div>
+
+    <div id="brancos" class="tab-content" role="tabpanel" aria-labelledby="tab-brancos" style="display:none;">
+      <div class="vinho-item">
+        <h3>Vinho Branco Archibald</h3>
+        <p>Suave e equilibrado, ideal para momentos descontraídos.</p>
+      </div>
+      <div class="vinho-item">
+        <h3>Vinho Branco Copacabana — Branco Leve e Tropical</h3>
+        <p>Refrescante, com notas cítricas e toque de maracujá, ideal para dias quentes.</p>
+      </div>
+    </div>
+
+    <div id="roses" class="tab-content" role="tabpanel" aria-labelledby="tab-roses" style="display:none;">
+      <div class="vinho-item">
+        <h3>Vinho Rosé Georgina — Rosé Demi-Sec</h3>
+        <p>Charmoso, levemente adocicado, com uma pitada de ousadia.</p>
+      </div>
+      <div class="vinho-item">
+        <h3>Vinho Rosé Waldorf — Rosé Seco Floral</h3>
+        <p>Delicado e romântico, com aromas florais e toque frutado.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <button id="loja-btn" style="display:none;">Conheça nossa loja</button>
+
+  <section id="sobre" aria-label="Sobre a vinícola">
+    <h2>Sobre Nós</h2>
+    <p>Fundada no coração da charmosa cidade de <strong>Andradas</strong>, a Vinícola Vinho Real é sinônimo de tradição e excelência na produção de vinhos finos desde 1995. Nossa missão é proporcionar experiências únicas por meio de vinhos que traduzem a paixão, o terroir e a dedicação de nossa equipe.</p>
+    <p>Utilizamos técnicas modernas aliadas ao conhecimento ancestral, respeitando cada etapa da produção para garantir qualidade superior. Nossos vinhedos cuidadosamente cultivados beneficiam-se do clima e solo únicos da região, resultando em vinhos complexos, equilibrados e cheios de personalidade.</p>
+    <p>Além da produção, oferecemos uma estrutura acolhedora para visitação, harmonização e eventos, tornando o Vinho Real um destino imperdível para amantes do vinho e turistas em busca de cultura e sabor.</p>
+  </section>
+
+  <section id="contato" aria-label="Informações de contato">
+    <h2>Contato & Informações</h2>
+    <p><strong>Endereço:</strong> Rua das Vinhas, 123 - Andradas, MG</p>
+    <p><strong>Horário de Trabalho:</strong> Segunda a sexta, das 7h às 18h. Sábados e feriados: trabalho somente com hora extra autorizada.</p>
+    <p><strong>Horário de Visitação:</strong> Segunda a sexta, das 9h às 17h. Sábados e feriados, das 10h às 17h.</p>
+    <p><strong>Instagram:</strong> <a href="https://instagram.com/vinhoreal_" target="_blank" rel="noopener noreferrer">@vinhoreal_</a></p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/5531999999999" target="_blank" rel="noopener noreferrer">(31) 99999-9999</a></p>
+    <p><strong>Email:</strong> <a href="mailto:contato@vinhoreal.com.br">contato@vinhoreal.com.br</a></p>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2025 Vinícola Vinho Real. Todos os direitos reservados.
+</footer>
+
+<script>
+  const verVinhosBtn = document.getElementById('verVinhosBtn');
+  const vinhosSection = document.getElementById('vinhos');
+  const lojaBtn = document.getElementById('loja-btn');
+  const welcomeSection = document.getElementById('welcome');
+
+  verVinhosBtn.addEventListener('click', () => {
+    vinhosSection.style.display = 'block';
+    lojaBtn.style.display = 'block';
+    welcomeSection.scrollIntoView({behavior: 'smooth'});
+  });
+
+  lojaBtn.addEventListener('click', () => {
+    alert('Nossa loja será inaugurada em breve! Fique atento.');
+  });
+
+  // Tabs funcionalidade
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active em todas
+      tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      tabContents.forEach(content => {
+        content.style.display = 'none';
+      });
+
+      // Ativa a clicada
+      button.classList.add('active');
+      button.setAttribute('aria-selected', 'true');
+
+      const tabId = button.getAttribute('data-tab');
+      document.getElementById(tabId).style.display = 'block';
+    });
+  });
+</script>
+
+</body>
+</html>
